@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+class Helper
+{
+public static function cate_parent ($data, $name = 'sltParent') {
+echo'<select class="form-control" name="'.$name.'">
+    <option value="0">Please Choose Category</option>
+</select>';
+}
+
+public static function cate_parent( $data, $parent = 0, $srt="--", $select=0){
+echo '<select class="form-control" name="'.$name.'">
+    <option value="0">Please Choose Category</option>
+</select>';
+foreach ($data as $val){
+$id= $val['id'];
+$name= $val['name'];
+if($val["parent_id"]==$parent){
+if($select !=0 && $id==$select){
+echo"<option value='$id' selected='selected>$srt $name</option>";
+                }else{
+                    echo"<option value='$id'> $srt $name</option>";
+}
+cate_parent($data, $id, $srt."--");
+}
+}
+}
+}
+</body>
+<?php
+namespace App\TrongPham;
+class function
+{
+    public static function cate_parent($data, $parent = 0, $srt = "--", $select = 0)
+    {
+        foreach ($data as $val) {
+            $id = $val['id'];
+            $name = $val['name'];
+            if ($val["parent_id"] == $parent) {
+                if ($select != 0 && $id == $select) {
+                    echo "<option value='$id' selected='selected>$srt $name</option>";
+} else {
+echo "<option value='$id'> $srt $name</option>";
+}
+cate_parent($data, $id, $srt . "--");
+}
+}
+}
+}
+?>
+
+</html>
